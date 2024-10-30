@@ -1,5 +1,5 @@
 # last-order
-**Last-order** is a manegement tool of **Sisters**.  
+**Last-order** is a management tool of **Sisters**.  
 This program provide a cli tools called `loctl` and APIs for operating Sisters.  
 
 ## Installation (For developers)
