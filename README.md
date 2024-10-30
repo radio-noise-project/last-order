@@ -7,7 +7,6 @@ This program provide a cli tools called `loctl` and APIs for operating Sisters.
 This project depends on below:  
 - Docker 26.1.4
 - Docker-compose 2.27.1
-- Golang 1.22.4
 
 If you have not installed yet, please install these software.
 
@@ -17,7 +16,7 @@ First, you download this git repository via `git clone`.
 git clone git@github.com:radio-noise-project/last-order.git
 ```
 
-This programs can be installed with the `docker compose` command.  
+This programs can be started with the `docker compose` command.  
 Please execute below in `last-order` directory:  
 ```
 docker compose up
