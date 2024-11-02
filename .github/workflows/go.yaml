@@ -19,7 +19,7 @@ jobs:
         if: ${{steps.setup-go.outputs.cache-hit != 'true'}}
         run: go mod download
       - name: Build
-        run: go build -v
+        run: go build -v -o last-order cmd/last-order/main.go
   lint:
     name: Lint
     runs-on: ubuntu-latest
