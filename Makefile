@@ -35,11 +35,11 @@ migrate-down:
 
 .PHONY: migrate
 migrate: #make migrate args="arg"
-	docker run --rm --net=${DOCKER_NETWORK} -v ./migration:/migration -it migrate/migrate -path=/migration/ -database $(DB_URL) $(arg) 
+	docker run --rm --net=$(DOCKER_NETWORK) -v ./migration:/migration -it migrate/migrate -path=/migration/ -database $(DB_URL) $(arg) 
 
 .PHONY: gen-db-doc
 gen-db-doc:
-	docker run --rm --net=${DOCKER_NETWORK} -v $$PWD:/work -w /work ghcr.io/k1low/tbls -c .tbls.yml doc "postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db/${POSTGRES_DB}?sslmode=disable" --rm-dist
+	docker run --rm --net=$(DOCKER_NETWORK) -v $$PWD:/work -w /work ghcr.io/k1low/tbls -c .tbls.yml doc $(DB_URL) --rm-dist
 
 .PHONY: clean
 clean:

@@ -1,0 +1,26 @@
+name: "last-order"
+desc: last-order's database
+dsn: postgres://postgres:postgres@db/last-order?sslmode=disable
+docPath: doc/schema
+format:
+  adjust: true
+er:
+  format: mermaid
+  distance: 1
+comments:
+- table: schema_migrations
+  tableComment: migration data.
+  columnComments:
+    dirty: migration status.
+    version: migration schema version.
+- table: sisters
+  tableComment: jsisters data table.
+  columnComments:
+    address: ip address.
+    description: description.
+    name: Machine name.
+    port: ip port.
+    private_key: private key.
+    public_key: public key.
+    role: int16_t role field.
+    sister_id: sister id (UUID v7).
