@@ -1,1 +1,1 @@
-DROP TABLE IF EXISTS sisters 
+DROP TABLE IF EXISTS sisters;
