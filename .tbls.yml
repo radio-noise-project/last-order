@@ -18,7 +18,7 @@ comments:
   columnComments:
     address: ip address.
     description: description.
-    name: Machine name.
+    name: machine name.
     port: ip port.
     private_key: private key.
     public_key: public key.
