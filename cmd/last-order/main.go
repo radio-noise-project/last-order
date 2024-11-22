@@ -8,5 +8,5 @@ import (
 
 func main() {
 	slog.Info("Start Last-Order")
-	api.Server()
+	api.Router()
 }
