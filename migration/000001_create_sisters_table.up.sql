@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS sisters(
     address text NOT NULL,
     port INT4 NOT NULL,
     description text,
-    private_key text NOT NULL,
-    public_key text NOT NULL
+    created_at TIMESTAMP WITH TIME ZONE,
+    updated_at TIMESTAMP WITH TIME ZONE,
+    deleted_at TIMESTAMP WITH TIME ZONE
 );

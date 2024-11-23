@@ -16,7 +16,7 @@ run:
 	go run cmd/last-order/main.go 
 .PHONY: psql
 psql:
-	docker compose up -d
+	docker compose up db -d
 	docker compose exec db /bin/psql -U ${POSTGRES_USER} -d ${POSTGRES_DB}
 
 DB_URL="postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db/${POSTGRES_DB}?sslmode=disable"
