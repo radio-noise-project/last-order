@@ -6,10 +6,11 @@ last-order's database
 
 ## Tables
 
-| Name                                                    | Columns | Comment              | Type       |
-| ------------------------------------------------------- | ------- | -------------------- | ---------- |
-| [public.schema_migrations](public.schema_migrations.md) | 2       | migration data.      | BASE TABLE |
-| [public.sisters](public.sisters.md)                     | 8       | jsisters data table. | BASE TABLE |
+| Name                                                    | Columns | Comment                  | Type       |
+| ------------------------------------------------------- | ------- | ------------------------ | ---------- |
+| [public.schema_migrations](public.schema_migrations.md) | 2       | migration data.          | BASE TABLE |
+| [public.sisters](public.sisters.md)                     | 9       | sisters data table.      | BASE TABLE |
+| [public.keys](public.keys.md)                           | 5       | private keys data table. | BASE TABLE |
 
 ## Relations
 
@@ -28,8 +29,16 @@ erDiagram
   text address
   integer port
   text description
+  timestamp_with_time_zone created_at
+  timestamp_with_time_zone updated_at
+  timestamp_with_time_zone deleted_at
+}
+"public.keys" {
+  uuid key_id
   text private_key
-  text public_key
+  timestamp_with_time_zone created_at
+  timestamp_with_time_zone updated_at
+  timestamp_with_time_zone deleted_at
 }
 ```
 

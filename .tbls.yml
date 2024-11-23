@@ -14,13 +14,23 @@ comments:
     dirty: migration status.
     version: migration schema version.
 - table: sisters
-  tableComment: jsisters data table.
+  tableComment: sisters data table.
   columnComments:
-    address: ip address.
-    description: description.
-    name: machine name.
-    port: ip port.
-    private_key: private key.
-    public_key: public key.
-    role: int16_t role field.
     sister_id: sister id (UUID v7).
+    name: machine name.
+    role: int16_t role field.
+    address: ip address.
+    port: ip port.
+    description: description.
+    created_at: timestamp.
+    updated_at: timestamp.
+    deleted_at: timestamp.
+- table: keys
+  tableComment: private keys data table.
+  columnComments:
+    key_id: private key id(UUID v7).
+    private_key: ssh private key.
+    created_at: timestamp.
+    updated_at: timestamp.
+    deleted_at: timestamp.
+

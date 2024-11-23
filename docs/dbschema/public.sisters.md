@@ -2,20 +2,21 @@
 
 ## Description
 
-jsisters data table.
+sisters data table.
 
 ## Columns
 
-| Name        | Type         | Default | Nullable | Children | Parents | Comment              |
-| ----------- | ------------ | ------- | -------- | -------- | ------- | -------------------- |
-| sister_id   | uuid         |         | false    |          |         | sister id (UUID v7). |
-| name        | varchar(256) |         | false    |          |         | Machine name.        |
-| role        | smallint     |         | false    |          |         | int16_t role field.  |
-| address     | text         |         | false    |          |         | ip address.          |
-| port        | integer      |         | false    |          |         | ip port.             |
-| description | text         |         | true     |          |         | description.         |
-| private_key | text         |         | false    |          |         | private key.         |
-| public_key  | text         |         | false    |          |         | public key.          |
+| Name        | Type                     | Default | Nullable | Children | Parents | Comment              |
+| ----------- | ------------------------ | ------- | -------- | -------- | ------- | -------------------- |
+| sister_id   | uuid                     |         | false    |          |         | sister id (UUID v7). |
+| name        | varchar(256)             |         | false    |          |         | machine name.        |
+| role        | smallint                 |         | false    |          |         | int16_t role field.  |
+| address     | text                     |         | false    |          |         | ip address.          |
+| port        | integer                  |         | false    |          |         | ip port.             |
+| description | text                     |         | true     |          |         | description.         |
+| created_at  | timestamp with time zone |         | true     |          |         | timestamp.           |
+| updated_at  | timestamp with time zone |         | true     |          |         | timestamp.           |
+| deleted_at  | timestamp with time zone |         | true     |          |         | timestamp.           |
 
 ## Constraints
 
@@ -44,8 +45,9 @@ erDiagram
   text address
   integer port
   text description
-  text private_key
-  text public_key
+  timestamp_with_time_zone created_at
+  timestamp_with_time_zone updated_at
+  timestamp_with_time_zone deleted_at
 }
 ```
 
