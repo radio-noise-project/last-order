@@ -1,4 +1,5 @@
 .env
 cover.out
 cover.html
+docs/dbschema/schema.json
 
