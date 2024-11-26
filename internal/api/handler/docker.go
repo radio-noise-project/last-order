@@ -10,7 +10,7 @@ import (
 	"github.com/radio-noise-project/last-order/pkg/docker"
 )
 
-func OutputLastOrderVersion(c echo.Context) error {
+func OutputVersion(c echo.Context) error {
 	info := VersionInformationLastOrder.getVersionInformation(VersionInformationLastOrder{})
 	return c.JSON(http.StatusOK, info)
 }

@@ -23,7 +23,7 @@ func TestOutputSistersVersion(t *testing.T) {
 	rec := httptest.NewRecorder()
 	c := echoServer.NewContext(req, rec)
 
-	err := OutputLastOrderVersion(c)
+	err := OutputVersion(c)
 	if err != nil {
 		t.Fatal()
 	}
