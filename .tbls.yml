@@ -1,0 +1,36 @@
+name: "last-order"
+desc: last-order's database
+dsn: postgres://postgres:postgres@db/last-order?sslmode=disable
+docPath: docs/dbschema
+format:
+  adjust: true
+er:
+  format: mermaid
+  distance: 1
+comments:
+- table: schema_migrations
+  tableComment: migration data.
+  columnComments:
+    dirty: migration status.
+    version: migration schema version.
+- table: sisters
+  tableComment: sisters data table.
+  columnComments:
+    sister_id: sister id (UUID v7).
+    name: machine name.
+    role: int16_t role field.
+    address: ip address.
+    port: ip port.
+    description: description.
+    created_at: timestamp.
+    updated_at: timestamp.
+    deleted_at: timestamp.
+- table: keys
+  tableComment: private keys data table.
+  columnComments:
+    key_id: private key id(UUID v7).
+    private_key: ssh private key.
+    created_at: timestamp.
+    updated_at: timestamp.
+    deleted_at: timestamp.
+
