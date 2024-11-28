@@ -21,7 +21,7 @@ servers:
         default: "20001"
     
 paths:
-  /information/version/sisters:
-    $ref: ./paths/information/version/sisters.yaml
-  /information/version/last-order:
-    $ref: ./paths/information/version/last-order.yaml
+  /information/runtime/sisters:
+    $ref: ./paths/runtime/version/sisters.yaml
+  /information/runtime/last-order:
+    $ref: ./paths/runtime/version/last-order.yaml
