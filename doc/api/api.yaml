@@ -1,0 +1,27 @@
+openapi: 3.0.0
+
+info:
+  title: Last-Order API specification
+  description: The specification of Last-Order client
+  version: "0.1.1"
+  contact:
+    name: Aoi Kondo
+    email: agotadmidori@gmail.com
+  license:
+    name: "Apache 2.0"
+    url: "https://www.apache.org/licenses/LICENSE-2.0.html"
+
+servers:
+  - url: http://{host}:{port}/api/v0 
+    description: API
+    variables:
+      host:
+        default: localhost
+      port:
+        default: "20001"
+    
+paths:
+  /information/version/sisters:
+    $ref: ./paths/information/version/sisters.yaml
+  /information/version/last-order:
+    $ref: ./paths/information/version/last-order.yaml
