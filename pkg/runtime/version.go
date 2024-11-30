@@ -6,7 +6,7 @@ import (
 	"github.com/docker/docker/client"
 )
 
-func DockerEngineVersion() string {
+func GetDockerEngineVersion() string {
 	ctx := context.Background()
 	cli, err := client.NewClientWithOpts(client.FromEnv, client.WithAPIVersionNegotiation())
 	if err != nil {

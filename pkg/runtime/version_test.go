@@ -6,6 +6,6 @@ import (
 )
 
 func TestDockerEngineVersion(t *testing.T) {
-	infoVersion := DockerEngineVersion()
+	infoVersion := GetDockerEngineVersion()
 	fmt.Printf("Docker Engine Version: %s", infoVersion)
 }
