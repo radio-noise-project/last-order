@@ -1,0 +1,14 @@
+pkgname = "model"
+output = "model"
+wipe = true
+add-global-variants = false
+no-tests = false
+
+[psql]
+  dbname  = "last-order"
+  host    = "db"
+  port    = 5432
+  user    = "postgres"
+  pass    = "postgres"
+  sslmode = "disable"
+  schema = "public"
