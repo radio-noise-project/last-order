@@ -1,7 +1,7 @@
 name: "last-order"
 desc: last-order's database
 dsn: postgres://postgres:postgres@db/last-order?sslmode=disable
-docPath: docs/dbschema
+docPath: doc/dbschema
 format:
   adjust: true
 er:
