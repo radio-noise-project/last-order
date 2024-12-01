@@ -1,0 +1,1 @@
+FROM migrate/migrate
