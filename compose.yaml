@@ -5,14 +5,25 @@ services:
       dockerfile: ./docker/api/Dockerfile
     container_name: last-order-api
     volumes:
-      - ./cmd/last-order:/go/src/app/cmd/
-      - ./pkg:/go/src/app/pkg/
-      - ./internal:/go/src/app/internal
-    hostname: backend
+      - .:/go/src/app
+      - /var/run/docker.sock:/var/run/docker.sock
+    hostname: api
     restart: always
     tty: true
+    depends_on:
+      - db
     ports:
-      - 8080:8080
+      # REST API PORT
+      - ${LASTORDER_PORT}:8080
+      # GRPC PORT
+      - ${LASTORDER_GRPC_PORT}:50051
+    environment:
+      TZ: ${POSTGRES_TIMEZONE}
+      POSTGRES_HOST: db
+      POSTGRES_PORT: ${POSTGRES_PORT}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
 
   db:
     build:
@@ -22,15 +33,17 @@ services:
     restart: always
     tty: true
     ports:
-      - 5432:5432
+      - ${POSTGRES_PORT}:5432
+    hostname: db
     volumes:
       - db-store:/var/lib/postgresql/data
-      - ./docker/db/init.d:/docker-entrypoint-initdb.d
     environment:
+      TZ: ${POSTGRES_TIMEZONE}
+      POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     networks:
-      - db-network
+      - lo-network
 
 networks:
   lo-network:
