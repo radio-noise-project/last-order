@@ -41,6 +41,22 @@ coverage:
 	go tool cover -html=cover.out -o cover.html
 	open cover.html
 
+.PHONY: migrate-up
+migrate-up:
+	docker build -t rnp/migrate -f docker/development/migrate/Dockerfile .
+	docker run --rm --net=last-order_lo-network \
+	-v $$PWD:/work -w /work rnp/migrate \
+	-path pkg/database/migration \
+	-database 'postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}?sslmode=disable' --verbose up
+	
+.PHONY: migrate-down
+migrate-down:
+	docker build -t rnp/migrate -f docker/development/migrate/Dockerfile .
+	docker run --rm --net=last-order_lo-network \
+	-v $$PWD:/work -w /work sql/migrate \
+	-path pkg/database/migration \
+	-database 'postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}?sslmode=disable' --verbose down
+
 .PHONY: migrate-up-development
 migrate-up-development:
 	docker build -t rnp/migrate -f docker/development/migrate/Dockerfile .
@@ -60,7 +76,7 @@ migrate-down-development:
 .PHONY: sqlboiler
 sqlboiler:
 	docker build -t rnp/sqlboiler -f docker/development/sqlboiler/Dockerfile .
-	docker run --rm --net=last-order_development-lo-network \
+	docker run --rm --net=last-order_lo-network \
 	-v $$PWD:/work -w /work rnp/sqlboiler \
 	sqlboiler psql -c internal/database/sqlboiler.toml -o pkg/database/model
 
