@@ -26,6 +26,7 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     networks:
       - lo-network
+      - misaka-network
 
   db:
     build:
@@ -38,7 +39,7 @@ services:
       - ${POSTGRES_PORT}:5432
     hostname: db
     volumes:
-      - ./docker/db/data:/var/lib/postgresql/data
+      - db-store:/var/lib/postgresql/data
     environment:
       TZ: ${POSTGRES_TIMEZONE}
       POSTGRES_DB: ${POSTGRES_DB}
@@ -50,3 +51,10 @@ services:
 networks:
   lo-network:
     driver: bridge
+  misaka-network:
+    driver: bridge
+    external: true
+    name: misaka-network
+
+volumes:
+  db-store:
