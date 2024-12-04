@@ -12,3 +12,12 @@ no-tests = false
   pass    = "postgres"
   sslmode = "disable"
   schema = "public"
+
+[[types]]
+  [types.match]
+    tables = ["sisters"]
+    name = "sister_id"
+  [types.replace]
+    type = "uuid.UUID"
+  [types.imports]
+    third_party = ['"github.com/google/uuid"']
