@@ -14,6 +14,7 @@ import (
 	"time"
 
 	"github.com/friendsofgo/errors"
+	"github.com/google/uuid"
 	"github.com/volatiletech/null"
 	"github.com/volatiletech/sqlboiler/boil"
 	"github.com/volatiletech/sqlboiler/queries"
@@ -24,7 +25,7 @@ import (
 
 // Sister is an object representing the database table.
 type Sister struct {
-	SisterID    string      `boil:"sister_id" json:"sister_id" toml:"sister_id" yaml:"sister_id"`
+	SisterID    uuid.UUID   `boil:"sister_id" json:"sister_id" toml:"sister_id" yaml:"sister_id"`
 	Name        string      `boil:"name" json:"name" toml:"name" yaml:"name"`
 	Role        int16       `boil:"role" json:"role" toml:"role" yaml:"role"`
 	Address     string      `boil:"address" json:"address" toml:"address" yaml:"address"`
@@ -62,6 +63,27 @@ var SisterColumns = struct {
 
 // Generated where
 
+type whereHelperuuid_UUID struct{ field string }
+
+func (w whereHelperuuid_UUID) EQ(x uuid.UUID) qm.QueryMod {
+	return qmhelper.Where(w.field, qmhelper.EQ, x)
+}
+func (w whereHelperuuid_UUID) NEQ(x uuid.UUID) qm.QueryMod {
+	return qmhelper.Where(w.field, qmhelper.NEQ, x)
+}
+func (w whereHelperuuid_UUID) LT(x uuid.UUID) qm.QueryMod {
+	return qmhelper.Where(w.field, qmhelper.LT, x)
+}
+func (w whereHelperuuid_UUID) LTE(x uuid.UUID) qm.QueryMod {
+	return qmhelper.Where(w.field, qmhelper.LTE, x)
+}
+func (w whereHelperuuid_UUID) GT(x uuid.UUID) qm.QueryMod {
+	return qmhelper.Where(w.field, qmhelper.GT, x)
+}
+func (w whereHelperuuid_UUID) GTE(x uuid.UUID) qm.QueryMod {
+	return qmhelper.Where(w.field, qmhelper.GTE, x)
+}
+
 type whereHelperint16 struct{ field string }
 
 func (w whereHelperint16) EQ(x int16) qm.QueryMod  { return qmhelper.Where(w.field, qmhelper.EQ, x) }
@@ -95,7 +117,7 @@ func (w whereHelperint) IN(slice []int) qm.QueryMod {
 }
 
 var SisterWhere = struct {
-	SisterID    whereHelperstring
+	SisterID    whereHelperuuid_UUID
 	Name        whereHelperstring
 	Role        whereHelperint16
 	Address     whereHelperstring
@@ -105,7 +127,7 @@ var SisterWhere = struct {
 	UpdatedAt   whereHelpernull_Time
 	DeletedAt   whereHelpernull_Time
 }{
-	SisterID:    whereHelperstring{field: "\"sisters\".\"sister_id\""},
+	SisterID:    whereHelperuuid_UUID{field: "\"sisters\".\"sister_id\""},
 	Name:        whereHelperstring{field: "\"sisters\".\"name\""},
 	Role:        whereHelperint16{field: "\"sisters\".\"role\""},
 	Address:     whereHelperstring{field: "\"sisters\".\"address\""},
@@ -422,7 +444,7 @@ func Sisters(mods ...qm.QueryMod) sisterQuery {
 
 // FindSister retrieves a single record by ID with an executor.
 // If selectCols is empty Find will return all columns.
-func FindSister(ctx context.Context, exec boil.ContextExecutor, sisterID string, selectCols ...string) (*Sister, error) {
+func FindSister(ctx context.Context, exec boil.ContextExecutor, sisterID uuid.UUID, selectCols ...string) (*Sister, error) {
 	sisterObj := &Sister{}
 
 	sel := "*"
@@ -940,7 +962,7 @@ func (o *SisterSlice) ReloadAll(ctx context.Context, exec boil.ContextExecutor) 
 }
 
 // SisterExists checks if the Sister row exists.
-func SisterExists(ctx context.Context, exec boil.ContextExecutor, sisterID string) (bool, error) {
+func SisterExists(ctx context.Context, exec boil.ContextExecutor, sisterID uuid.UUID) (bool, error) {
 	var exists bool
 	sql := "select exists(select 1 from \"sisters\" where \"sister_id\"=$1 limit 1)"
 

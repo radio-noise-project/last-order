@@ -4,7 +4,7 @@ import (
 	"context"
 	"strconv"
 
-	"github.com/gofrs/uuid"
+	"github.com/google/uuid"
 	"github.com/radio-noise-project/last-order/internal/database"
 	"github.com/radio-noise-project/last-order/pkg/database/model"
 	"github.com/volatiletech/sqlboiler/boil"
@@ -19,17 +19,18 @@ func AddNode(name string, host string, port string) {
 
 	ctx := context.Background()
 
-	uuid, err := uuid.NewV4()
-	if err != nil {
-		panic(err)
-	}
-
 	intPort, err := strconv.Atoi(port)
 	if err != nil {
 		panic(err)
 	}
+
+	uuidv4, err := uuid.NewRandom()
+	if err != nil {
+		panic(err)
+	}
+
 	sister := &model.Sister{
-		SisterID: uuid.String(),
+		SisterID: uuidv4,
 		Name:     name,
 		Role:     0,
 		Address:  host,
