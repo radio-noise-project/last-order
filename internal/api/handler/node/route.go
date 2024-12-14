@@ -26,3 +26,8 @@ func postAddNode(c echo.Context) error {
 	node.AddNode(name, address, port)
 	return c.JSON(http.StatusOK, map[string]string{"message": "Node added successfully"})
 }
+
+func getNodeList(c echo.Context) error {
+	nodes := node.GetNodeList()
+	return c.JSON(http.StatusOK, nodes)
+}

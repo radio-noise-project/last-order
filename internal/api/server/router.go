@@ -2,6 +2,7 @@ package server
 
 import (
 	"github.com/labstack/echo"
+	"github.com/radio-noise-project/last-order/internal/api/handler/container"
 	"github.com/radio-noise-project/last-order/internal/api/handler/node"
 	"github.com/radio-noise-project/last-order/internal/api/handler/runtime"
 )
@@ -12,4 +13,5 @@ func router(e *echo.Echo) {
 
 	runtime.Handler(v0)
 	node.Handler(v0)
+	container.Handler(v0)
 }
